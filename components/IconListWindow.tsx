@@ -1,4 +1,4 @@
-import { Window } from "@/components/Window"
+import { Window } from "@components/Window"
 import { ReactNode } from "react"
 
 interface IconListItem {

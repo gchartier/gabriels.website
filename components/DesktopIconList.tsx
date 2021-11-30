@@ -1,20 +1,21 @@
-import { Post } from "types/Post"
+import { DesktopIcon } from "@components/DesktopIcon"
+import { DesktopIconType } from "types/DesktopIcon"
 
-const desktopIcons: Post[] = [
+const desktopIcons: DesktopIconType[] = [
     {
-        id: 1,
-        title: "WhyEmailIsAwesome",
-        extension: ".bin",
-        content: (
-            <p>
-                When you set &quot;resizable&quot; prop, there will be drag handle in the bottom
-                right corner (but resizing itself must be handled by you tho!)
-            </p>
-        ),
-        icon: <></>,
+        id: "1",
+        title: "Blog Posts",
+        icon: "/win95Folder.png",
+        windowId: "1",
     },
 ]
 
 export function DesktopIconList() {
-    return <></>
+    return (
+        <>
+            {desktopIcons.map((dIcon) => (
+                <DesktopIcon key={dIcon.id} desktopIcon={dIcon} />
+            ))}
+        </>
+    )
 }

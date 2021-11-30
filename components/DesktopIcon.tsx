@@ -1,6 +1,10 @@
 import { DesktopIconType } from "types/DesktopIcon"
 import styled from "styled-components"
 import Image from "next/image"
+import { useContext } from "react"
+import { WindowsContext } from "@util/WindowsContext"
+import { WindowType } from "types/Window"
+import { Windows } from "@util/Windows"
 
 const FolderIcon = styled.button`
     color: white;
@@ -18,14 +22,24 @@ const FolderIcon = styled.button`
 
 interface DesktopIconProps {
     desktopIcon: DesktopIconType
-    onDoubleClick: () => void
 }
 
-export function DesktopIcon({ desktopIcon, onDoubleClick }: DesktopIconProps) {
+export function DesktopIcon({ desktopIcon }: DesktopIconProps) {
+    const { openWindows, setOpenWindows } = useContext(WindowsContext)
+    const windowIsAlreadyOpen = (window: WindowType) => window.id === desktopIcon.windowId
+    const window = Windows.find((window) => window.id === desktopIcon.windowId)
+    if (!window) throw new Error("Desktop window not found")
+
     return (
-        <FolderIcon onDoubleClick={() => onDoubleClick()}>
-            <Image src="/win95Folder.png" alt="Folder" width={40} height={40} />
-            <span style={{ padding: "0 3px 3px 3px" }}>Blog Posts</span>
+        <FolderIcon
+            onDoubleClick={() =>
+                openWindows.some(windowIsAlreadyOpen)
+                    ? undefined
+                    : setOpenWindows((openWindows) => [...openWindows, window])
+            }
+        >
+            <Image src={desktopIcon.icon} alt="Folder" width={40} height={40} />
+            <span style={{ padding: "0 3px 3px 3px" }}>{desktopIcon.title}</span>
         </FolderIcon>
     )
 }

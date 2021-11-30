@@ -1,7 +1,9 @@
-import { ReactNode, useState } from "react"
+import { useContext, useState } from "react"
 import styled from "styled-components"
 import Draggable from "react-draggable"
 import { Window as R95Window, WindowHeader, Button, WindowContent } from "react95"
+import { WindowType } from "types/Window"
+import { WindowsContext } from "@util/WindowsContext"
 
 const WindowWrapper = styled.div`
     .window-header {
@@ -25,13 +27,8 @@ const WindowWrapper = styled.div`
     }
 `
 
-export interface WindowProps {
-    title: string
-    content: ReactNode
-    onClose: () => void
-}
-
-export function Window({ title, content, onClose }: WindowProps) {
+export function Window({ id, title, content }: WindowType) {
+    const { setOpenWindows } = useContext(WindowsContext)
     const [activeDrags, setActiveDrags] = useState(0)
     const dragHandlers = { onStart, onStop }
 
@@ -49,7 +46,13 @@ export function Window({ title, content, onClose }: WindowProps) {
                 <R95Window className="window">
                     <WindowHeader className="window-header">
                         <span>{title}</span>
-                        <Button onClick={() => onClose()}>
+                        <Button
+                            onClick={() =>
+                                setOpenWindows((openWindows) =>
+                                    openWindows.filter((window) => window.id !== id)
+                                )
+                            }
+                        >
                             <span>x</span>
                         </Button>
                     </WindowHeader>

@@ -1,7 +1,6 @@
-import { ReactNode } from "react"
-
 export interface DesktopIconType {
-    id: number
+    id: string
     title: string
-    icon: ReactNode
+    icon: string
+    windowId: string
 }

@@ -1,14 +1,11 @@
 import Image from "next/image"
-import { Dispatch, SetStateAction } from "react"
-import { List, ListItem, Divider, Button, Panel, AppBar, Toolbar } from "react95"
-import { Clock } from "./Clock"
+import { useState } from "react"
+import { Clock } from "@components/Clock"
+import { List, ListItem, Divider, Button, AppBar, Toolbar } from "react95"
 
-interface StartMenuBarProps {
-    isMenuOpen: boolean
-    setIsMenuOpen: Dispatch<SetStateAction<boolean>>
-}
+export function StartMenuBar() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-export function StartMenuBar({ isMenuOpen, setIsMenuOpen }: StartMenuBarProps) {
     return (
         <AppBar style={{ top: "auto", bottom: "0" }}>
             <Toolbar style={{ justifyContent: "space-between" }}>

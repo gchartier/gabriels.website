@@ -4,8 +4,10 @@ import React, { useState } from "react"
 import { createGlobalStyle, ThemeProvider } from "styled-components"
 import { styleReset } from "react95"
 import millenium from "react95/dist/themes/millenium"
-import { StartMenuBar } from "@/components/StartMenuBar"
-import { Desktop } from "@/components/Desktop"
+import { StartMenuBar } from "@components/StartMenuBar"
+import { Desktop } from "@components/Desktop"
+import { WindowType } from "types/Window"
+import { WindowsContext } from "@util/WindowsContext"
 const GlobalStyles = createGlobalStyle`${styleReset}`
 
 //import ms_sans_serif from "react95/dist/fonts/ms_sans_serif.woff2"
@@ -28,10 +30,10 @@ const GlobalStyles = createGlobalStyle`${styleReset}`
 // }
 
 const Blog: NextPage = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [openWindows, setOpenWindows] = useState<WindowType[]>([])
 
     return (
-        <>
+        <WindowsContext.Provider value={{ openWindows, setOpenWindows }}>
             <GlobalStyles />
             <ThemeProvider theme={millenium}>
                 <div style={{ width: "100%", height: "100%", backgroundColor: "#008080" }}>
@@ -41,10 +43,10 @@ const Blog: NextPage = () => {
                         <link rel="icon" href="/favicon.ico" />
                     </Head>
                     <Desktop />
-                    <StartMenuBar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+                    <StartMenuBar />
                 </div>
             </ThemeProvider>
-        </>
+        </WindowsContext.Provider>
     )
 }
 
