@@ -8,14 +8,16 @@ interface IconListItem {
 }
 
 interface IconListWindowProps {
+    id: string
     title: string
     items: IconListItem[]
     onClose: () => void
 }
 
-export function IconListWindow({ title, items, onClose }: IconListWindowProps) {
+export function IconListWindow({ title, items, id }: IconListWindowProps) {
     return (
         <Window
+            id={id}
             title={title}
             content={
                 <ul>
@@ -24,7 +26,6 @@ export function IconListWindow({ title, items, onClose }: IconListWindowProps) {
                     ))}
                 </ul>
             }
-            onClose={onClose}
         />
     )
 }
