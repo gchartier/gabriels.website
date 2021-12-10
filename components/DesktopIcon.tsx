@@ -1,12 +1,19 @@
 import { DesktopIconType } from "types/DesktopIcon"
 import styled from "styled-components"
 import Image from "next/image"
-import { useContext } from "react"
+import React, {
+    ReactChild,
+    ReactElement,
+    ReactFragment,
+    ReactNode,
+    useContext,
+    useEffect,
+    useState,
+} from "react"
 import { WindowsContext } from "@util/WindowsContext"
 import { WindowType } from "types/Window"
-import { Windows } from "@util/Windows"
 
-const FolderIcon = styled.button`
+const StyledDesktopIcon = styled.button`
     color: white;
     display: flex;
     flex-direction: column;
@@ -21,25 +28,50 @@ const FolderIcon = styled.button`
 `
 
 interface DesktopIconProps {
-    desktopIcon: DesktopIconType
+    id: string
+    title: string
+    icon: string
+    content: ReactElement | (() => Promise<ReactNode>)
 }
 
-export function DesktopIcon({ desktopIcon }: DesktopIconProps) {
+function isWindowAlreadyOpened(id: string, openWindows: WindowType[]) {
+    return openWindows.some((window: WindowType) => window.id === id)
+}
+
+export function DesktopIcon({ id, title, icon, content }: DesktopIconProps) {
     const { openWindows, setOpenWindows } = useContext(WindowsContext)
-    const windowIsAlreadyOpen = (window: WindowType) => window.id === desktopIcon.windowId
-    const window = Windows.find((window) => window.id === desktopIcon.windowId)
-    if (!window) throw new Error("Desktop window not found")
+    const [windowContent, setWindowContent] = useState(
+        React.isValidElement(content) ? content : undefined
+    )
+
+    useEffect(() => {
+        async function loadWindowContent() {
+            if (isWindowAlreadyOpened(id, openWindows) === false && windowContent === undefined) {
+                // @ts-ignore
+                const renderedContent = await content()
+                setWindowContent(renderedContent)
+            }
+        }
+        loadWindowContent()
+    }, [openWindows, id, content, windowContent])
 
     return (
-        <FolderIcon
+        <StyledDesktopIcon
             onDoubleClick={() =>
-                openWindows.some(windowIsAlreadyOpen)
+                isWindowAlreadyOpened(id, openWindows)
                     ? undefined
-                    : setOpenWindows((openWindows) => [...openWindows, window])
+                    : setOpenWindows((openWindows) => [
+                          ...openWindows,
+                          {
+                              id,
+                              title,
+                              content: windowContent,
+                          },
+                      ])
             }
         >
-            <Image src={desktopIcon.icon} alt="Folder" width={40} height={40} />
-            <span style={{ padding: "0 3px 3px 3px" }}>{desktopIcon.title}</span>
-        </FolderIcon>
+            <Image src={icon} alt="Folder" width={40} height={40} />
+            <span style={{ padding: "0 3px 3px 3px" }}>{title}</span>
+        </StyledDesktopIcon>
     )
 }

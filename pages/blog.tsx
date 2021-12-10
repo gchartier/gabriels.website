@@ -1,4 +1,4 @@
-import type { NextPage } from "next"
+import type { InferGetStaticPropsType, NextPage } from "next"
 import Head from "next/head"
 import React, { useState } from "react"
 import { createGlobalStyle, ThemeProvider } from "styled-components"
@@ -8,6 +8,7 @@ import { StartMenuBar } from "@components/StartMenuBar"
 import { Desktop } from "@components/Desktop"
 import { WindowType } from "types/Window"
 import { WindowsContext } from "@util/WindowsContext"
+import { getBlogPostDesktopIcons } from "@util/posts"
 const GlobalStyles = createGlobalStyle`${styleReset}`
 
 //import ms_sans_serif from "react95/dist/fonts/ms_sans_serif.woff2"
@@ -29,11 +30,20 @@ const GlobalStyles = createGlobalStyle`${styleReset}`
 //   font-family: 'ms_sans_serif';
 // }
 
-const Blog: NextPage = () => {
+export async function getStaticProps() {
+    const posts = getBlogPostDesktopIcons()
+    return {
+        props: {
+            posts,
+        },
+    }
+}
+
+export default function Blog(props: InferGetStaticPropsType<typeof getStaticProps>) {
     const [openWindows, setOpenWindows] = useState<WindowType[]>([])
 
     return (
-        <WindowsContext.Provider value={{ openWindows, setOpenWindows }}>
+        <WindowsContext.Provider value={{ openWindows, setOpenWindows, blogPosts: props.posts }}>
             <GlobalStyles />
             <ThemeProvider theme={millenium}>
                 <div style={{ width: "100%", height: "100%", backgroundColor: "#008080" }}>
@@ -49,5 +59,3 @@ const Blog: NextPage = () => {
         </WindowsContext.Provider>
     )
 }
-
-export default Blog

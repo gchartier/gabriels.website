@@ -13,9 +13,9 @@ const desktopIcons: DesktopIconType[] = [
 export function DesktopIconList() {
     return (
         <>
-            {desktopIcons.map((dIcon) => (
+            {/* {desktopIcons.map((dIcon) => (
                 <DesktopIcon key={dIcon.id} desktopIcon={dIcon} />
-            ))}
+            ))} */}
         </>
     )
 }
