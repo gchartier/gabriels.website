@@ -1,17 +1,22 @@
 import styled from "styled-components"
 import NextLink from "next/link"
 
-const StyledLink = styled.a``
+const StyledLink = styled.a`
+    display: inline-block;
+`
 
 interface LinkProps {
     href: string
     text: string
+    openNewTab?: boolean
 }
 
-export function Link({ href, text }: LinkProps) {
+export function Link({ href, text, openNewTab = false }: LinkProps) {
     return (
         <NextLink href={href} passHref>
-            <StyledLink>{text}</StyledLink>
+            <StyledLink target={openNewTab ? "_blank" : "_self"} data-blobity-magnetic="true">
+                {text}
+            </StyledLink>
         </NextLink>
     )
 }
