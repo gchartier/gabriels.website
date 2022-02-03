@@ -6,7 +6,6 @@ const desktopIcons: DesktopIconType[] = [
         id: "1",
         title: "Blog Posts",
         icon: "/win-95-folder.png",
-        windowId: "1",
     },
 ]
 
