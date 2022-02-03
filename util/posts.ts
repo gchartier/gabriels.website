@@ -11,7 +11,7 @@ export function getBlogPostDesktopIcons() {
         return {
             id: fileName.replace(/\.mdx$/, ""),
             title: fileName.replace(/\.mdx$/, ""),
-            icon: "/win95Folder.png",
+            icon: "/win-95-folder.png",
         }
     })
 }

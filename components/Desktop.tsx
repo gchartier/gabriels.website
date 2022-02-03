@@ -1,9 +1,6 @@
 import { useContext } from "react"
 import { WindowsContext } from "@util/WindowsContext"
 import { Window } from "@components/Window"
-import { DesktopIconList } from "@components/DesktopIconList"
-import { DesktopIcon } from "@components/DesktopIcon"
-import { getPostData } from "@util/posts"
 import { BlogPosts } from "@components/BlogPosts"
 
 export function Desktop() {

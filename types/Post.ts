@@ -1,9 +1,14 @@
-import { ReactNode } from "react"
-
 export interface Post {
-    id: number
-    title: string
-    extension: string
-    content: ReactNode
-    icon: ReactNode
+    content: string
+    filePath: string
+    data: PostFrontmatter
 }
+
+export interface PostFrontmatter {
+    title: string
+    date: string
+    icon: string
+    desktopName: string
+}
+
+//export function assert
