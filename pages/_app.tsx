@@ -1,8 +1,68 @@
-import "../styles/globals.css"
 import type { AppProps } from "next/app"
+import { createGlobalStyle } from "styled-components"
 
-function MyApp({ Component, pageProps }: AppProps) {
-    return <Component {...pageProps} />
+const GlobalStyle = createGlobalStyle`
+#__next {
+    height: 100%;
 }
 
-export default MyApp
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+    isolation: isolate;
+}
+`
+
+export default function App({ Component, pageProps }: AppProps) {
+    return (
+        <>
+            <GlobalStyle />
+            <Component {...pageProps} />
+        </>
+    )
+}
