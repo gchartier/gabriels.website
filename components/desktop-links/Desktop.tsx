@@ -1,10 +1,10 @@
-import { useContext } from "react"
-import { WindowsContext } from "@util/WindowsContext"
-import { Window } from "@components/Window"
-import { BlogPosts } from "@components/BlogPosts"
+import { useContext } from "react";
+import { WindowsContext } from "@util/WindowsContext";
+import { Window } from "@components/desktop-links/Window";
+import { BlogPosts } from "@components/blog/BlogPosts";
 
 export function Desktop() {
-    const { openWindows } = useContext(WindowsContext)
+    const { openWindows } = useContext(WindowsContext);
 
     return (
         <main style={{ padding: ".5rem", overflow: "hidden", minHeight: "100%" }}>
@@ -18,5 +18,5 @@ export function Desktop() {
                 />
             ))}
         </main>
-    )
+    );
 }

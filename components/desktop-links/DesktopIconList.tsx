@@ -1,5 +1,5 @@
-import { DesktopIcon } from "@components/DesktopIcon"
-import { DesktopIconType } from "types/DesktopIcon"
+import { DesktopIcon } from "@components/desktop-links/DesktopIcon";
+import { DesktopIconType } from "types/DesktopIcon";
 
 const desktopIcons: DesktopIconType[] = [
     {
@@ -7,7 +7,7 @@ const desktopIcons: DesktopIconType[] = [
         title: "Blog Posts",
         icon: "/win-95-folder.png",
     },
-]
+];
 
 export function DesktopIconList() {
     return (
@@ -16,5 +16,5 @@ export function DesktopIconList() {
                 <DesktopIcon key={dIcon.id} desktopIcon={dIcon} />
             ))} */}
         </>
-    )
+    );
 }

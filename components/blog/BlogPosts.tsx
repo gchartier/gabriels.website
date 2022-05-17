@@ -1,10 +1,10 @@
-import { DesktopIcon } from "@components/DesktopIcon"
-import { WindowsContext } from "@util/WindowsContext"
-import { useContext } from "react"
-import Link from "next/link"
+import { DesktopIcon } from "@components/desktop-links/DesktopIcon";
+import { WindowsContext } from "@util/WindowsContext";
+import { useContext } from "react";
+import Link from "next/link";
 
 export function BlogPosts() {
-    const { blogPosts } = useContext(WindowsContext)
+    const { blogPosts } = useContext(WindowsContext);
 
     return (
         <DesktopIcon
@@ -39,5 +39,5 @@ export function BlogPosts() {
                 </ul>
             }
         />
-    )
+    );
 }

@@ -1,17 +1,17 @@
-import { Window } from "@components/Window"
-import { ReactNode } from "react"
+import { Window } from "@components/desktop-links/Window";
+import { ReactNode } from "react";
 
 interface IconListItem {
-    id: number
-    icon: ReactNode
-    title: string
+    id: number;
+    icon: ReactNode;
+    title: string;
 }
 
 interface IconListWindowProps {
-    id: string
-    title: string
-    items: IconListItem[]
-    onClose: () => void
+    id: string;
+    title: string;
+    items: IconListItem[];
+    onClose: () => void;
 }
 
 export function IconListWindow({ title, items, id }: IconListWindowProps) {
@@ -27,5 +27,5 @@ export function IconListWindow({ title, items, id }: IconListWindowProps) {
                 </ul>
             }
         />
-    )
+    );
 }

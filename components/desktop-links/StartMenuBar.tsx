@@ -1,10 +1,10 @@
-import Image from "next/image"
-import { useState } from "react"
-import { Clock } from "@components/Clock"
-import { List, ListItem, Divider, Button, AppBar, Toolbar } from "react95"
+import Image from "next/image";
+import { useState } from "react";
+import { Clock } from "@components/desktop-links/Clock";
+import { List, ListItem, Divider, Button, AppBar, Toolbar } from "react95";
 
 export function StartMenuBar() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
         <AppBar style={{ top: "auto", bottom: "0" }}>
@@ -52,5 +52,5 @@ export function StartMenuBar() {
                 <Clock />
             </Toolbar>
         </AppBar>
-    )
+    );
 }
