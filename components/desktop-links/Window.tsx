@@ -6,18 +6,23 @@ import { WindowType } from "types/Window"
 import { WindowsContext } from "@util/WindowsContext"
 
 const WindowWrapper = styled.div`
+    max-width: min-content;
+
     .window-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
+
     .window {
         width: 400px;
         min-height: 200px;
     }
+
     .window:nth-child(2) {
         margin: 2rem;
     }
+
     .footer {
         display: block;
         margin: 0.25rem;
