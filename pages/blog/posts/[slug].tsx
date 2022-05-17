@@ -10,7 +10,6 @@ import { postFilePaths, POSTS_PATH } from "@util/mdxUtils"
 import { SpicyLink } from "@components/blog/SpicyLink"
 import { GifDivider } from "@components/blog/GifDivider"
 import PostLayout from "@components/blog/PostLayout"
-import { GetStaticProps, InferGetStaticPropsType } from "next"
 import { PostFrontmatter } from "types/Post"
 
 // Custom components/renderers to pass to MDX.

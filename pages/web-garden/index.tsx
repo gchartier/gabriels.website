@@ -24,8 +24,11 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
             <ThemeProvider theme={millenium}>
                 <div style={{ width: "100%", height: "100%", backgroundColor: "#008080" }}>
                     <Head>
-                        <title>Gabriel&apos;s Blog</title>
-                        <meta name="description" content="Here I blog about the web" />
+                        <title>Gabriel&apos;s Web Garden</title>
+                        <meta
+                            name="description"
+                            content="An ever growing garden of things I find on the web"
+                        />
                         <link rel="icon" href="/favicon.ico" />
                     </Head>
                     <Desktop />

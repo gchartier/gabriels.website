@@ -1,22 +1,35 @@
-import styled from "styled-components"
-import NextLink from "next/link"
+import NextLink from "next/link";
+import { ReactNode } from "react";
 
-const StyledLink = styled.a`
-    display: inline-block;
-`
-
-interface LinkProps {
-    href: string
-    text: string
-    openNewTab?: boolean
+export interface LinkProps {
+    href: string;
+    children: ReactNode;
+    openNewTab?: boolean;
+    className?: string;
 }
 
-export function Link({ href, text, openNewTab = false }: LinkProps) {
+export function Link({ href, children, openNewTab = false, className }: LinkProps) {
     return (
         <NextLink href={href} passHref>
-            <StyledLink target={openNewTab ? "_blank" : "_self"} data-blobity-magnetic="true">
-                {text}
-            </StyledLink>
+            <a
+                className={className}
+                target={openNewTab ? "_blank" : "_self"}
+                data-blobity-magnetic="true"
+            >
+                {children}
+            </a>
         </NextLink>
-    )
+    );
+}
+
+interface TextLinkProps extends LinkProps {
+    children: string;
+}
+
+export function TextLink({ className, children, ...props }: TextLinkProps) {
+    return (
+        <Link className={`inline-block ${className}`} {...props}>
+            {children}
+        </Link>
+    );
 }
