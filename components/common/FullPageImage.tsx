@@ -9,7 +9,7 @@ interface Props {
 export function FullPageImage({ src, alt }: Props) {
     return (
         <FullPageImageWrapper>
-            <Image src={src} alt={alt} layout="fill" />
+            <Image src={src} alt={alt} layout="fill" priority={true} />
         </FullPageImageWrapper>
     );
 }
