@@ -12,7 +12,7 @@ const Home: NextPage = () => {
     useBlobityCursor();
 
     return (
-        <PageWrapper>
+        <PageWrapper title="Gabriel's Website">
             <EmailPrompt />
             <ContentGrid>
                 <ContentCell>
