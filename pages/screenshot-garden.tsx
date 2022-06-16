@@ -1,5 +1,4 @@
 import type { NextPage } from "next";
-import { PageWrapper } from "@components/common/PageWrapper";
 import { FullPageImage } from "@components/common/FullPageImage";
 import { ImageFlower } from "@components/image-garden/ImageFlower";
 import { PageWrapper } from "@components/common/PageWrapper";

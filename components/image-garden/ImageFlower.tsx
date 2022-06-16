@@ -1,6 +1,8 @@
 import Image from "next/image";
 import styled from "styled-components";
 import { ImageFlowerStem as Stem } from "@components/image-garden/ImageFlowerStem";
+import { useLayoutEffect, useState } from "react";
+import { animate } from "motion";
 
 interface Props {
     src: string;
@@ -27,18 +29,43 @@ export function ImageFlower({
     flowerBottom,
     flowerLeft,
 }: Props) {
+    const [id] = useState(convertImageSrcToId(src));
+    const [isHovered, setIsHovered] = useState<boolean>(false);
+
+    useLayoutEffect(() => {
+        if (isHovered) {
+            animate(`#${id}`, { transform: "scale(2)" }, { duration: 1 });
+        }
+        if (!isHovered) {
+            animate(`#${id}`, { transform: "scale(1)" }, { duration: 1 });
+        }
+    }, [isHovered, id]);
+
     return (
         <FlowerWrapper top={flowerTop} right={flowerRight} bottom={flowerBottom} left={flowerLeft}>
             <Flower
+                id={id}
                 yPosition={`${imageYPosition.toString()}px`}
                 xPosition={`${imageXPosition.toString()}px`}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
             >
-                <Image src={src} alt={alt} width={width} height={height} />
+                <Image
+                    src={src}
+                    alt={alt}
+                    width={width}
+                    height={height}
+                    quality={100}
+                    unoptimized
+                />
             </Flower>
             <Stem />
         </FlowerWrapper>
     );
 }
+
+const convertImageSrcToId = (src: string) => src.replace(/\//g, "-").split(".")[0];
+
 interface WrapperProps {
     top?: number;
     right?: number;
