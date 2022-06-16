@@ -4,6 +4,12 @@ import { FullPageImage } from "@components/common/FullPageImage";
 import { ImageFlower } from "@components/image-garden/ImageFlower";
 import { PageWrapper } from "@components/common/PageWrapper";
 
+export async function getStaticProps(context: any) {
+    return {
+        props: {},
+    };
+}
+
 const ScreenshotGarden: NextPage = () => {
     return (
         <PageWrapper title="Screenshot Garden">
@@ -53,7 +59,7 @@ const ScreenshotGarden: NextPage = () => {
                 />
 
                 <ImageFlower
-                    src="/screenshot-garden/Just like the other millions.png"
+                    src="/screenshot-garden/Just-like-the-other-millions.png"
                     alt="TODO"
                     width={300}
                     height={25}
