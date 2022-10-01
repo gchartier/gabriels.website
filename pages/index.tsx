@@ -40,29 +40,6 @@ const Home: NextPage = () => {
                         />
                     </div>
                 </ContentCell>
-                <ContentCell>
-                    <Link href="/image-garden" openNewTab>
-                        <div className="relative h-full">
-                            <Image
-                                src="/image-garden.webp"
-                                alt="Image Garden"
-                                layout="fill"
-                                objectFit="cover"
-                            />
-                            <div className="flex text-white relative justify-center h-full items-center text-2xl">
-                                <h2 className="bg-yellow-300 px-2 text-black">Image Garden</h2>
-                                <div className="absolute bottom-0 right-0 bg-yellow-300 px-2 pt-2 rounded-tl">
-                                    <Image
-                                        src="/Doodle-Arrow-Right.svg"
-                                        alt="Doodle Arrow that takes you to my blog"
-                                        width={30}
-                                        height={30}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </Link>
-                </ContentCell>
             </ContentGrid>
             <UnderConstructionFooter />
         </PageWrapper>
